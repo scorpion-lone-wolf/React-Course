@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Pure React</title>
+  <!-- For React Library -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    // Since JSX is not a valid  JavaScript, we need to create an element using React.createElement
+    // Else we need Babel to transpile JSX into plain JavaScript
+
+    // Step1 : Create an Component(Using React.createElement)
+    function App() {
+      return React.createElement('header',null,'Hello React!');
+    }
+    // Step2 : Create a Root
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    // Step3: Render the root
+    root.render(React.createElement(App));
+  </script>
+</body>
+
+</html>
