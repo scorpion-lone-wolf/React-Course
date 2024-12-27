@@ -146,13 +146,40 @@ function getBook(id) {
 // * <--------------------------- Destructuring of Objects and Arrays ----------------------------------->
 
 // Object Destructuring
-const { title, author, pages, publicationDate, genres } = getBook(2);
+const { title, author, pages, publicationDate, genres, } = getBook(2);
 
 console.log("genres :", genres);
 // Array Destructuring
 const [primaryGenra, secondaryGenra] = genres;
-console.log(primaryGenra, " and ", secondaryGenra);
+console.log(primaryGenra, " and ", secondaryGenra); // science fiction  and  humor
 
 
 
 // * <------------------------------ Spread and Rest Operators -------------------------------------------->
+
+// restOperators
+const [firstGenra, ...otherGenra] = genres;
+console.log("otherGenra :", otherGenra); // otherGenra : [ 'humor', 'speculative fiction', 'short stories', 'fantasy' ]
+
+// This works same for Object as well.(spreadOperator)
+const newGenras = [...otherGenra, 'epic fantasy']; //
+console.log("newGenras : ", newGenras); // newGenras :  [ 'humor',  'speculative fiction', 'short stories','fantasy','epic fantasy' ]
+
+
+
+// * <------------------------------- Template Literals ---------------------------------------------------->
+
+console.log(`${title} is the title of the book`); // The Cyberiad is the title of the book
+
+
+// * <------------------------------ Ternary Operators instead of IF/ELSE ---------------------------------->
+
+// "JSX doesn't allow standalone if/else statements directly within the render method. Using ternary operator lets you inline conditional logic neatly."
+
+const pagesRange = pages > 1000 ? 'over a thousand' : 'less then one thousand';
+console.log(pagesRange); // less then one thousand
+
+
+// * <------------------------------ Arrow Functions ------------------------------------------------------->
+
+
