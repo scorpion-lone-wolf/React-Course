@@ -182,4 +182,11 @@ console.log(pagesRange); // less then one thousand
 
 // * <------------------------------ Arrow Functions ------------------------------------------------------->
 
+function getYearTraditionalWay(dateInString) {
+  return dateInString.split('-')[0];
+}
+const getYearNewWay = (dateInString) => dateInString.split('-')[0];
+
+console.log(getYearTraditionalWay(publicationDate));
+console.log(getYearNewWay(publicationDate));
 
