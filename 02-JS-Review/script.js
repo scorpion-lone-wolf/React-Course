@@ -146,7 +146,7 @@ function getBook(id) {
 // * <--------------------------- Destructuring of Objects and Arrays ----------------------------------->
 
 // Object Destructuring
-const { title, author, pages, publicationDate, genres, reviews} = getBook(3);
+const { title, author, pages, publicationDate, genres, reviews } = getBook(3);
 
 console.log("genres :", genres);
 // Array Destructuring
@@ -194,8 +194,8 @@ console.log(getYearNewWay(publicationDate));
 // * <------------------------------ Short-circuting and Logical-Operators ---------------------------------->
 // falsy values are => 0 , '' , false , null, undefined, NaN
 
-console.log(true&&"Hello I will be printed"); // Hello I will be printed
-console.log(false&&"Hello I will not be printed"); // false
+console.log(true && "Hello I will be printed"); // Hello I will be printed
+console.log(false && "Hello I will not be printed"); // false
 
 
 console.log(true || "Hello I will be printed"); // true
@@ -204,7 +204,7 @@ console.log(false || "Hello I will be printed"); // Hello I will be printed
 
 //  time where || operator fails
 const rating = 0; // Means rating is 0 , which is also a value
-const count1 = rating|| "No rating";
+const count1 = rating || "No rating";
 console.log(count1); // No rating
 
 
@@ -214,11 +214,11 @@ const count2 = rating ?? "No rating";
 console.log(count2); // 0
 
 
-// * <----------------------------------------- Optional Chaning ---------------------------------------------->
+// * <----------------------------------------- Optional Chaning --------------------------------------------------->
 
 function getTotalReviewCount(reviews) {
-  const goodReadCount  = reviews?.goodreads?.reviewsCount??0;
-  const librarythingCount  = reviews?.librarything?.reviewsCount??0;
+  const goodReadCount = reviews?.goodreads?.reviewsCount ?? 0;
+  const librarythingCount = reviews?.librarything?.reviewsCount ?? 0;
   return goodReadCount + librarythingCount;
 
 }
@@ -226,20 +226,56 @@ console.log(getTotalReviewCount(reviews));
 
 
 // * <----------------------------------------- map , filter and reduce ---------------------------------------------->
-const array = [1,2,3,4,5];
-const square = array.map(function (element){
-  return element*element;
+const array = [1, 2, 3, 4, 5];
+const square = array.map(function (element) {
+  return element * element;
 });
 console.log("Square : ", square);
 
 
-const filtered = array.filter(function (element){
+const filtered = array.filter(function (element) {
   return element % 2 === 0;
 });
 
 console.log("filtered : ", filtered);
 
-const reduced = array.reduce(function (acc, element){
-  return acc+element
-},0);
+const reduced = array.reduce(function (acc, element) {
+  return acc + element;
+}, 0);
 console.log("reduced : ", reduced);
+
+// * <------------------------------------------- Array sort fn ------------------------------------------------------->
+
+const marks = [34, 5, 33, 1, 0, 9, 55, 3, 4];
+// const sortedMarks = [...marks].sort((a, b) => a - b);
+const sortedMarks = marks.slice().sort((a, b) => a - b);
+console.log(sortedMarks);
+//  This will not be mutated by the array sort function as we have sort on newly created array using slice()
+console.log(marks);
+
+
+// * <-------------------------------------------Working with Immutable arrays ------------------------------------------------------->
+const books = getBooks();
+
+//  1. Adding a new book without mutating the existing one
+const newBook = {
+  id: 6,
+  titile: "Harry Potter and the chamber of secrets",
+  author: "J.K. Rowling",
+  pages: 1000
+};
+
+const bookAfterAdding = [...books, newBook];
+
+console.log(bookAfterAdding);
+
+// 2. deleting the book
+const bookAfterDeleting = bookAfterAdding.filter(book => book.id != 5);
+
+console.log(bookAfterDeleting);
+
+// 3. Update the book with pages = 1200 for id =6
+const bookAfterUpdate = bookAfterAdding.map(book => book.id == 6 ? { ...book, pages: 1200 } : book);
+console.log(bookAfterUpdate);
+
+// * <--------------------------------------------- Asynchronous JS Promise -------------------------------->
