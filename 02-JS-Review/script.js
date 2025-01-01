@@ -279,3 +279,18 @@ const bookAfterUpdate = bookAfterAdding.map(book => book.id == 6 ? { ...book, pa
 console.log(bookAfterUpdate);
 
 // * <--------------------------------------------- Asynchronous JS Promise -------------------------------->
+fetch('https://jsonplaceholder.typicode.com/todos/1').then((response)=>response.json()).then(data =>console.log(data));
+
+console.log("I will be executed first before fetch call");
+
+// using async-await
+async function getData(){
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  const jsonData = await response.json();
+  console.log(jsonData);
+}
+getData();
+
+console.log("I will be executed first before fetch(await) call");
+
+
